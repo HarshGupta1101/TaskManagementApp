@@ -223,7 +223,7 @@ searchBar.addEventListener("keyup", function (e) {
 });
 
 const openTask = (event) => {
-  const searchId = event.target.getAttribute("name");
+  // const searchId = event.target.getAttribute("name");
   const targetID = event.target.getAttribute("name");
 
   const getTask = globalTaskData.filter((taskdata) => {
