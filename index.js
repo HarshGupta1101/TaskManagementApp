@@ -159,6 +159,8 @@ const editCard = (event) => {
   taskDescription.setAttribute("contenteditable","True");
   taskType.setAttribute("contenteditable","True");
   submitButton.setAttribute("onclick","saveEdit.apply(this, arguments)");
+  submitButton.removeAttribute("data-bs-toggle");
+  submitButton.removeAttribute("data-bs-target");
   submitButton.innerHTML = "Save Changes";
   
 
@@ -201,6 +203,9 @@ const saveEdit = (event) => {
   taskTitle.setAttribute("contenteditable","False");
   taskDescription.setAttribute("contenteditable","False");
   taskType.setAttribute("contenteditable","False");
+  submitButton.setAttribute("onclick","openTask.apply(this, arguments)");
+  submitButton.setAttribute("data-bs-toggle", "modal");
+  submitButton.setAttribute("data-bs-target", "#openTaskModal");
   submitButton.innerHTML = "Open Task";
 };
 
@@ -223,12 +228,8 @@ searchBar.addEventListener("keyup", function (e) {
 });
 
 const openTask = (event) => {
-  // const searchId = event.target.getAttribute("name");
   const targetID = event.target.getAttribute("name");
-
-  const getTask = globalTaskData.filter((taskdata) => {
-    return taskdata.id === targetID;
-  });
+  const getTask = globalTaskData.filter((task) => task.id === targetID);
   openTaskModal.innerHTML = openTaskModalHTML(getTask[0]);
   
  };
